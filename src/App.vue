@@ -1,12 +1,17 @@
 <template>
-  <main id="app">
+  <div id="app">
+    <Header />
     <router-view />
-  </main>
+  </div>
 </template>
 
 <script>
+import Header from "@/components/Header/index.vue";
 
 export default {
+  components: {
+    Header,
+  },
   methods: {
   },
 };

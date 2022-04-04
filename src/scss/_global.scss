@@ -11,12 +11,14 @@
   opacity: 0.1 !important;
 }
 
-$grid-breakpoints: (xs: 0,
+$grid-breakpoints: (
+  xs: 0,
   sm: 576px,
   md: 768px,
   lg: 992px,
   xl: 1200px,
-  xxl: 1400px);
+  xxl: 1400px
+);
 
 @include media-breakpoint-down(sm) {
   html {
@@ -28,4 +30,8 @@ $grid-breakpoints: (xs: 0,
   html {
     font-size: 15px;
   }
+}
+
+div.container-fluid {
+  max-width: 1200px !important;
 }

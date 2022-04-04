@@ -1,34 +1,37 @@
 <template>
-  <article
-    class="home container d-flex flex-column justify-content-between flex-wrap"
-  >
-    <header class="row justify-self-start">
-      <h1>{{ texts[step].title }}</h1>
-      <h2>{{ texts[step].text }}</h2>
-    </header>
-    <div class="row home__content mt-3 d-flex flex-grow-1 align-items-center">
-      <Form />
-      <div class="col d-none d-md-none d-lg-flex flex-grow-1 align-items-start">
-        <img
-          :src="require('@/assets/images/desktop-pagina-' + step + '.png')"
-          alt="imagem do formulário"
-          class="img-fluid"
-          v-if="step < 4"
-        />
+  <div id="home" class="container-fluid mt-3">
+    <div class="row">
+      <div class="col-9">
+        <Featured />
+      </div>
+      <div class="col-3">
+        <SquarePopUp />
       </div>
     </div>
-  </article>
+    <div class="row mt-3">
+      <div class="col">
+        <MoreVideos />
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
 
+import Featured from "@/components/Featured/index.vue";
+import SquarePopUp from "@/components/SquarePopUp/index.vue";
+import MoreVideos from "@/components/MoreVideos/index.vue";
+
 export default {
   name: "Home",
+  components: {
+    Featured,
+    SquarePopUp,
+    MoreVideos,
+  },
   data() {
     return {
     };
-  },
-  components: {
   },
   computed: {
   },
