@@ -1,24 +1,46 @@
 <template>
-  <div class="col-3">
-    <div class="row">
-      <div class="col-4">
-        <div class="ratio ratio-1x1">
-          <iframe src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" title="YouTube video" allowfullscreen></iframe>
-        </div>
+  <div class="smallvideo col-3 mt-2 mb-2">
+    <div class="row d-flex align-items-center
+    justify-content-center"
+    data-bs-toggle="modal"
+    data-bs-target="#modalPlayerVideo"
+    @click="playVideo(video.id)">
+      <div class="col-4 d-flex align-items-center justify-content-center">
+          <img :src="video.snippet.thumbnails.high.url"
+          height="72px"
+          :alt="video.snippet.title">
       </div>
       <div class="col">
-          <p class="text-start">REO Speedwagon - Can't Fight This Feeling (Official HD Video)</p>
+          <p class="text-start mb-0">{{video.snippet.title | truncate(40)}}</p>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import { mapActions } from "vuex";
+import truncate from "@/util/filters";
+
 export default {
   name: "SmallVideo",
+  props: ["video"],
+  filters: {
+    truncate,
+  },
+  methods: {
+    ...mapActions("videos", ["playVideo"]),
+  },
 };
 </script>
 
-<style>
+<style lang="scss">
+.smallvideo {
+  img, p {
+    cursor: pointer;
+  }
 
+  p {
+    font-size: toRem(12px)
+  }
+}
 </style>
