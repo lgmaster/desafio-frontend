@@ -1,17 +1,18 @@
 import Vue from "vue";
-import Unicon from "vue-unicons/dist/vue-unicons-vue2.umd";
-import { uniAngleLeftB } from "vue-unicons/dist/icons";
+import VueGapi from "vue-gapi";
+
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 
+import clientConfig from "./services/config";
+
 import "bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-Unicon.add([uniAngleLeftB]);
-Vue.use(Unicon);
-
 Vue.config.productionTip = false;
+
+Vue.use(VueGapi, clientConfig);
 
 new Vue({
   router,
