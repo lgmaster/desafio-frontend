@@ -1,37 +1,14 @@
 import Vue from "vue";
 import Vuex from "vuex";
 
+import auth from "./auth";
+import videos from "./videos";
+
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-  state: {
-    step: 1,
-    formData: {},
-  },
-  getters: {
-    getActiveStep(state) {
-      return state.step;
-    },
-    getFormData(state) {
-      return state.formData.data;
-    },
-  },
-  mutations: {
-    incrementStep(state) {
-      state.step += 1;
-    },
-    decrementStep(state) {
-      state.step -= 1;
-    },
-    resetStep(state) {
-      state.step = 1;
-    },
-    saveFormData(state, data) {
-      state.formData = { ...state.formData, data };
-    },
-  },
-  actions: {
-  },
   modules: {
+    auth,
+    videos,
   },
 });
