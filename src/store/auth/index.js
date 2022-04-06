@@ -1,30 +1,31 @@
-import Vue from "vue";
-import Vuex from "vuex";
-
-Vue.use(Vuex);
-
 export default {
   namespaced: true,
   state: {
     user: null,
+    userSession: null,
   },
   getters: {
-    // getActiveStep(state) {
-    //   return state.step;
-    // },
-    // getFormData(state) {
-    //   return state.formData.data;
-    // },
+    getUserSession(state) {
+      return state.userSession;
+    },
   },
   mutations: {
-    async login(state) {
-      const session = await this._vm.$gapi.login();
-      state.user = session.currentUser;
+    login(state, payload) {
+      state.user = payload;
+      const session = localStorage.getItem("gapi.session");
+      state.userSession = JSON.parse(session);
+    },
+    userSession(state, payload) {
+      state.userSession = JSON.parse(payload);
     },
   },
   actions: {
-    login({ commit }) {
-      commit("login");
+    async login({ commit }) {
+      const session = await this._vm.$gapi.login();
+      commit("login", session.currentUser);
+    },
+    userSession({ commit }, session) {
+      commit("userSession", session);
     },
   },
 };
