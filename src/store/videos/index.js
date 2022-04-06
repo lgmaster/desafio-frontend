@@ -1,29 +1,56 @@
-import Vue from "vue";
-import Vuex from "vuex";
-
-import { searchVideos } from "@/services/service";
-
-Vue.use(Vuex);
+import { searchVideos, listVideos } from "@/services/service";
 
 export default {
   namespaced: true,
   state: {
-    foundVideos: null,
+    searchedVideos: null,
+    featuredVideos: null,
+    moreVideos: null,
+    playedVideo: null,
   },
   getters: {
-    getfoundVideos(state) {
-      return state.foundVideos;
+    getSearchedVideos(state) {
+      return state.searchedVideos;
+    },
+    getFeaturedVideos(state) {
+      return state.featuredVideos;
+    },
+    getMoreVideos(state) {
+      return state.moreVideos;
+    },
+    getPlayedVideo(state) {
+      return state.playedVideo;
     },
   },
   mutations: {
-    async search(state, query) {
-      const list = await searchVideos(query);
-      state.foundVideos = list.data.items;
+    search(state, payload) {
+      state.searchedVideos = payload;
+    },
+    listFeatured(state, payload) {
+      state.featuredVideos = payload;
+    },
+    moreVideos(state, payload) {
+      state.moreVideos = payload;
+    },
+    playVideo(state, payload) {
+      state.playedVideo = payload;
     },
   },
   actions: {
-    search({ commit }, query) {
-      commit("search", query);
+    async search({ commit }, query) {
+      const list = await searchVideos(query);
+      commit("search", list.data.items);
+    },
+    async listFeatured({ commit }, params) {
+      const list = await listVideos(params);
+      commit("listFeatured", list.data.items);
+    },
+    async moreVideos({ commit }, params) {
+      const list = await listVideos(params);
+      commit("moreVideos", list.data.items);
+    },
+    async playVideo({ commit }, id) {
+      commit("playVideo", id);
     },
   },
 };
