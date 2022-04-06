@@ -1,7 +1,7 @@
 <template>
   <div class="card h-100">
-    <div class="card-body">
-      This is some text within a card body.
+    <div class="card-body d-flex align-items-center justify-content-center">
+      Square Pop-up
     </div>
   </div>
 </template>
